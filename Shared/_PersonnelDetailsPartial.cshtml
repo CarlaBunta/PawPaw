@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PawPaw.ViewModel.PersonnelDetailsViewModel>
+
+<table style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                Action
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Working from
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        <span id="btnDelete" class="glyphicon glyphicon-trash" onclick="DeletePersonnel(@item.PersonnelId)"></span>&nbsp;&nbsp;
+                        <span id="btnEdit" class="glyphicon glyphicon-pencil" onclick="EditPersonnel(@item.PersonnelId)""></span>
+                    </td>
+                    <td>
+                        @item.PersonnelName
+                    </td>
+                    <td>
+                        @item.PersonnelTypeId
+                    </td>
+                    <td>
+                        @item.WorkingFrom
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>
