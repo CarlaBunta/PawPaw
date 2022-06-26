@@ -1,1 +1,82 @@
-﻿
+@model IEnumerable<PawPaw.ViewModel.ServicesAppointmentViewModel>
+
+<style type="text/css">
+    #tbl {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-left: 110px;
+    }
+
+        #tbl td, #tbl th {
+            text-align: center;
+            padding: 8px;
+            border-radius: 15px;
+        }
+        /*#tbl tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }*/
+
+        #tbl tr {
+            background-color: floralwhite;
+        }
+
+            #tbl tr:hover {
+                background-color: #ddfad9;
+            }
+
+        #tbl th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #d3f060;
+            color: black;
+            text-align: center;
+        }
+</style>
+
+<table id="tbl" style="width: 100%">
+
+    <thead style="width: 100% ">
+        <tr>
+            <th>
+                Pet Name
+            </th>
+            <th>
+                Owner Name
+            </th>
+            <th>
+                Booking In
+            </th>
+            <th>
+                Service Type
+            </th>
+            <th>
+                Total Amount
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.PacientName
+                </td>
+                <td>
+                    @item.OwnerName
+                </td>
+                <td>
+                    @item.BookingIn.ToString(format: "dd-MMM-yyyy")
+                </td>
+                <td>
+                    @item.ServiceTypeId
+                </td>
+                <td>
+                    @item.TotalAmount.ToString(format: "#,##0.00")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
