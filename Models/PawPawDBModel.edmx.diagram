@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="81bdb5fbd7534c7ca5764f8061ed3793" Name="Diagram1">
+        <EntityTypeShape EntityType="PawPawDBModel.Appointment" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" FillColor="Tan" />
+        <EntityTypeShape EntityType="PawPawDBModel.Payment" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" FillColor="Tan" />
+        <EntityTypeShape EntityType="PawPawDBModel.Service" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" FillColor="Tan" />
+        <EntityTypeShape EntityType="PawPawDBModel.DoctorStatu" Width="1.625" PointX="2.75" PointY="3.75" IsExpanded="true" FillColor="Tan" />
+        <EntityTypeShape EntityType="PawPawDBModel.PaymentType" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" FillColor="Tan" />
+        <EntityTypeShape EntityType="PawPawDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PawPawDBModel.ServiceType" Width="1.5" PointX="4.875" PointY="3.75" FillColor="Tan" />
+        <EntityTypeShape EntityType="PawPawDBModel.Personnel" Width="1.75" PointX="6.875" PointY="0.75" FillColor="Tan" />
+        <EntityTypeShape EntityType="PawPawDBModel.PersonnelType" Width="1.75" PointX="6.875" PointY="3.75" FillColor="Tan" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

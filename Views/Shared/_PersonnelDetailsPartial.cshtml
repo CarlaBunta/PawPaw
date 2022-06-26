@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PawPaw.ViewModel.PersonnelDetailsViewModel>
+
+<table style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                Action
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Working from
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        @item.PersonnelName
+                    </td>
+                    <td>
+                        @item.PersonnelType
+                    </td>
+                    <td>
+                        @item.WorkingFrom
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>
