@@ -1,7 +1,178 @@
-﻿
+@model Appointment.ViewModel.AppointmentViewModel
 @{
     ViewBag.Title = "Appointments";
 }
 
-<h2>Appointments</h2>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+@*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
+@*<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>*@
+
+@*<script src="~/lib/momentjs/moment.min.js"></script>
+    <script src="~/lib/momentjs/locale/de-CH.js"></script>
+    <script src="~/lib/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>*@
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        DateTimePicker();
+        $("#btnSave").click(function () {
+            if (!$("#formPatientAppointment").valid()) {
+                return;
+            }
+            AddPatientAppointment();
+        });
+
+        LoadAppointmentHistory();
+    });
+
+    function DateTimePicker() {
+        $(function () {
+            $('.datepicker').datetimepicker({
+                dateFormat: 'dd-M-yy',
+                changeMonth: true,
+                changeYear: true,
+                showOn: 'button',
+                sideBySide: true,
+                controlType: 'select',
+
+                minDate: new Date()
+            });
+        });
+
+        $("#txtBookingIn").change(function () {
+            var date = $("#txtBookingFrom").datepicker('getDate');
+            date.setDate(date.getDate());
+            
+        });
+    }
+
+    function LoadAppointmentHistory() {
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'HTML',
+            contentType: false,
+            processtype: false,
+            url: '/Appoointments/GetAllAppointmentHistory',
+            success: function (data) {
+                $("#divAppointmentHistory").html(data);
+            },
+            error: function () {
+                alert('There was a problem with your request. Please try again!');
+            }
+        });
+    }
+
+    function ResetAppointment() {
+        $("#txtPacientName").val('');
+        $("#txtOwnerName").val('');
+        $("#txtBookingIn").val('');
+        $("#ddServiceTypeId").val(1);
+        $("#txtTotalAmount").val('');
+    }
+
+    function AddPacientAppointment() {
+        var objAppointmentViewModel = {};
+        objAppointmentViewModel.PacientName = $("#txtPacientName").val();
+        objAppointmentViewModel.OwnerName = $("#txtOwnerName").val();
+        objAppointmentViewModel.BookingIn = $("#txtBookingIn").val();
+        objAppointmentViewModel.ServiceTypeId = $("#ddServiceTypeId").val();
+        objAppointmentViewModel.TotalAmount = $("#txtTotalAmount").val();
+       
+        $.ajax({
+            async: true,
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            url: '/Appointments/Appointments',
+            data: JSON.stringify(objAppointmentViewModel),
+            success: function (data) {
+                if (data.success === true) {
+                    alert(data.message);
+                    ResetAppointment();
+                    LoadAppointmentHistory();
+                }
+            },
+            error: function () {
+                alert('There was a problem with your appointment. Please try again later!');
+            }
+        });
+
+    }
+</script>
+
+<style type="text/css">
+    .btn:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+    #btn {
+        font-family: "Monaco", monospace;
+        font-size: 17px;
+    }
+</style>
+
+<div style="margin-top: 50px">
+    <button type="button" id="btn" class="btn btn-primary" data-toggle="modal" data-target="#divNewAppointment" data-backdrop="static" data-keyboard="false" style="background-color: #d3f060; border: none ">New Appointment</button>
+</div>
+
+<div Id="divNewAppointment" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Appointment</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formPatientAppointment">
+                    <div class="container">
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(expression: model => model.PacientName, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextBoxFor(expression: model => model.PacientName, htmlAttributes: new { @class = "form-control", @id = "txtPacientName " })
+                                @Html.ValidationMessageFor(expression: model => model.PacientName, validationMessage: null, htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(expression: model => model.OwnerName, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextBoxFor(expression: model => model.OwnerName, htmlAttributes: new { @class = "form-control", @id = "txtOwnerName " })
+                                @Html.ValidationMessageFor(expression: model => model.OwnerName, validationMessage: null, htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(expression: model => model.BookingIn, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(expression: model => model.BookingIn, additionalViewData: new { htmlAttributes = new { @readonly = "true", Value = Model.BookingIn.ToString(format: "dd-MMM-yyyy"), @class = "form-control datepicker", @id = "txtBookingIn " } })
+
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(expression: model => model.ServiceTypeId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.ServiceTypeId, Model.ListOfServiceTypes, new { @class = "form-control", id = "ddServiceTypeId" })                                @Html.ValidationMessageFor(expression: model => model.ServiceTypeId, validationMessage: null, htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                            @Html.ValidationMessageFor(expression: model => model.ServiceTypeId, validationMessage: null, htmlAttributes: new { @class = "text-danger" })
+
+                        </div>
+
+</form>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSave" type="button" class="btn btn-success" style="background-color: #c0f0c1 ; border: none">Save</button> &nbsp;
+                <button id="btnClose" type="button" data-dismiss="modal" class="btn btn-danger" style="background-color: #b9ede1 ; border: none ">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 70px"></div>
+
+<div id="divAppointmentHistory"></div>
+
+
 
