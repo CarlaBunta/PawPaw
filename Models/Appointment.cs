@@ -19,5 +19,6 @@ namespace PawPaw.Models
         public string OwnerName { get; set; }
         public System.DateTime BookingIn { get; set; }
         public int TotalAmount { get; set; }
+        public string OwnerPhone { get; set; }
     }
 }

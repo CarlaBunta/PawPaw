@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,9 +19,9 @@ namespace Appointment.ViewModel
         [Required(ErrorMessage = "Name is required!")]
         public string OwnerName { get; set; }
 
-        [Display(Name = "Customer Phone Number")]
-        [Required(ErrorMessage = "Phone number is required!")]
-        public string BookingIn { get; set; }
+        [Display(Name = "Owner Name")]
+        [Required(ErrorMessage = "Name is required!")]
+        public string OwnerPhone { get; set; }
 
         [Display(Name = "Booking In")]
         [Required(ErrorMessage = "Date is required!")]
@@ -36,6 +36,6 @@ namespace Appointment.ViewModel
         [Required(ErrorMessage = "Amount is required!")]
         public int TotalAmount { get; set; }
 
-        public IEnumerable<SelectListItem> ListOfServices { get; set; }
+        public IEnumerable<SelectListItem> ListOfServiceTypes { get; set; }
     }
 }

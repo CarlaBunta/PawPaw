@@ -12,6 +12,7 @@
           <Property Name="AppointmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PacientName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="OwnerName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="OwnerPhone" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="BookingIn" Type="date" Nullable="false" />
           <Property Name="TotalAmount" Type="int" Nullable="false" />
         </EntityType>
@@ -106,6 +107,7 @@
           <Property Name="OwnerName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BookingIn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TotalAmount" Type="Int32" Nullable="false" />
+          <Property Name="OwnerPhone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -194,6 +196,7 @@
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="PawPawDBModel.Appointment">
               <MappingFragment StoreEntitySet="Appointments">
+                <ScalarProperty Name="OwnerPhone" ColumnName="OwnerPhone" />
                 <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
                 <ScalarProperty Name="PacientName" ColumnName="PacientName" />
                 <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />

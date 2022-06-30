@@ -16,8 +16,7 @@ namespace PawPaw.Models
     {
         public int PersonnelId { get; set; }
         public string PersonnelName { get; set; }
-        public int PersonnelTypeName { get; set; }
+        public int PersonnelTypeId { get; set; }
         public System.DateTime WorkingFrom { get; set; }
-        public object PersonnelTypeId { get; internal set; }
     }
 }

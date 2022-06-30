@@ -226,6 +226,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\AppointmentViewModel.cs" />
     <Compile Include="ViewModel\PersonnelDetailsViewModel.cs" />
     <Compile Include="ViewModel\PersonnelViewModel.cs" />
     <Compile Include="ViewModel\ServicesViewModel.cs" />
@@ -308,9 +309,11 @@
     <Content Include="Views\Appointments\Appointments.cshtml" />
     <Content Include="Views\Personnel\Personnel.cshtml" />
     <Content Include="Views\Shared\_PersonnelDetailsPartial.cshtml" />
+    <Content Include="Views\Shared\_AppointmentHistoryPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AppointmentViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
